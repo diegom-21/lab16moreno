@@ -1,6 +1,6 @@
 // frontend/src/lib/api.ts
 
-const BASE_URL = 'http://localhost:3001/api/productos';
+const BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001/api/productos';
 
 // Define interfaces para los tipos de datos que manejas
 export interface Producto {
@@ -63,3 +63,4 @@ export async function deleteProducto(id: number): Promise<void> {
     throw new Error(`Error al eliminar producto ${id}: ${res.statusText} - ${errorData.message}`);
   }
 }
+

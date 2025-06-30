@@ -2,7 +2,7 @@
 
 import { useRouter } from 'next/navigation';
 import { useState, ChangeEvent, FormEvent } from 'react'; // Importa ChangeEvent y FormEvent para tipos
-import { createProducto } from '@/lib/api';
+import { createProducto } from '../../../lib/api';
 
 // Define una interfaz para el tipo de producto, útil para la tipificación
 interface ProductoForm {

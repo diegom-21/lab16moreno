@@ -3,7 +3,7 @@
 import { useEffect, useState, ChangeEvent, FormEvent } from 'react';
 import { useRouter } from 'next/navigation';
 // Asume que estas funciones están en tu archivo api.ts
-import { getProducto, updateProducto, Producto } from '@/lib/api';
+import { getProducto, updateProducto, Producto } from '../../../../lib/api';
 
 // Define una interfaz para los props que recibe este componente (el ID del producto)
 interface EditProductoPageProps {
