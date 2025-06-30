@@ -1,0 +1,27 @@
+{
+  "name": "fullstack-app",
+  "version": "1.0.0",
+  "description": "Backend con Express + Frontend con Next.js",
+  "main": "index.js",
+  "scripts": {
+    "dev": "NODE_ENV=development node index.js",
+    "build": "cd ../frontend && npm install && npm run build",
+    "start": "NODE_ENV=production node index.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "mysql2": "^3.14.1",
+    "sequelize": "^6.37.7",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "next": "15.3.4"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

@@ -1,22 +1,29 @@
 const express = require('express');
-const cors = require('cors');
+const next = require('next');
+require('dotenv').config();
+
+const dev = process.env.NODE_ENV !== 'production';
+const app = next({ dev, dir: '../frontend' }); // ← apunta al frontend
+const handle = app.getRequestHandler();
+
+const { sequelize } = require('./db'); // tu conexión
 const productosRoutes = require('./routes/productosRoutes');
-const sequelize = require('./db');
 
-const app = express();
+app.prepare().then(() => {
+  const server = express();
 
-app.use(cors());
-app.use(express.json());
+  server.use(express.json());
 
-app.use('/api/productos', productosRoutes);
+  // Rutas API
+  server.use('/api/productos', productosRoutes);
 
-sequelize.sync()
-    .then(() => {
-        console.log('Base de datos sincronizada');
-        app.listen(3001, () => {
-            console.log('Backend corriendo en http://localhost:3001');
-        });
-    })
-    .catch(err => {
-        console.error('Error al sincronizar base de datos:', err);
-    });
+  // Rutas de frontend (Next.js)
+  server.all('*', (req, res) => {
+    return handle(req, res);
+  });
+
+  const PORT = process.env.PORT || 3000;
+  server.listen(PORT, () => {
+    console.log(`Servidor corriendo en http://localhost:${PORT}`);
+  });
+});
